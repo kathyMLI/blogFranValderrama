@@ -11,6 +11,9 @@
       <section>
       <figure class="preview__figure" :class="figureClass" :style="getBgImg(urlMedium)"></figure>
       </section>
+      <section>
+      <figure class="preview__figure" :class="figureClass" :style="getBgImg(urlBottom)"></figure>
+      </section>
       <section class="post__body rte" v-html="content"></section>
 
       <footer class="post__footer">
