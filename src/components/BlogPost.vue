@@ -2,17 +2,15 @@
   <transition name="post">
     <article v-if="allReady" class="post">
       <header class="post__header">
-        <h2 class="post__title">{{ title }}{{ fotografa }} {{makeup}}</h2>
+        <h2 class="post__title">{{ title }}</h2>
 
-<!--         <h3 class="post__meta">by <router-link class="post__author"
-          :to="`/by/${kebabify(author)}`">{{ author }}</router-link>
-          <span class="post__sep"></span>
-          <time>{{ prettyDate(published) }}</time>
-        </h3>
+      <h3>{{ maquillaje }}{{ slug }}{{styling}}</h3>
 
-        <blockquote class="post__subtitle">{{ description }}</blockquote> -->
+        <blockquote class="post__subtitle">{{ description }}</blockquote>
       </header>
-
+      <section>
+      <figure class="preview__figure" :class="figureClass" :style="getBgImg(urlMedium)"></figure>
+      </section>
       <section class="post__body rte" v-html="content"></section>
 
       <footer class="post__footer">
@@ -42,8 +40,11 @@ export default {
       description: '',
       commentsReady: false,
       ready: false,
-      fotografa: '',
-      makeup: ''
+      maquillaje: '',
+      slug: '',
+      styling: '',
+      urlBottom: '',
+      urlMedium: ''
     }
   },
 
@@ -69,6 +70,9 @@ export default {
   methods: {
     kebabify,
     prettyDate,
+    getBgImg(src) {
+      return { backgroundImage: `url(${src})` }
+    },
     showComments() {
       // This is injected by prerender-spa-plugin on build time, we don't prerender disqus comments.
       if (window.__PRERENDER_INJECTED &&

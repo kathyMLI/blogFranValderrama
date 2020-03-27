@@ -15,6 +15,10 @@ export default {
         console.log('title: ', title);
         let author = items.map(element => element.fields.fotografa);
         console.log('author: ', author);
+        let imageTop = items.map(element => element.fields.imageTop.fields.file.url);
+        console.log('fotoTop: ', imageTop);
+        // `/post/${id}.json`,
+
         /* {
         ok title: "dolor quis",
         image: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/maarten-van-den-heuvel.jpg",
@@ -26,7 +30,7 @@ export default {
           var person = {};
           console.log('index: ', index)
           person.author = author[index]
-          person.image = 'https://firebasestorage.googleapis.com/v0/b/blog-6f62a.appspot.com/o/3.jpg?alt=media&token=e30ff740-e9be-4861-8429-4f6b9ab6bb88';
+          person.image = `https:${imageTop[index]}`
           person.published = createdAt[index]
           person.title = title[index]
           person.id = id[index]
