@@ -1,7 +1,15 @@
 <template>
   <main class="blog" :class="{ 'blog--reading': this.post }">
     <blog-nav :content="content" :filters="filters" :navs="navs"/>
-    <blog-feed :filters="filters"/>
+    <div class="blog__searchStyle">
+      <div class="blog__styleSearcher">
+        <input class="blog__searchInput" v-model="search" placeholder="titulo, autor o ISBN">
+      </div>
+      <div>
+        <button v-on:click='searchClicked = !searchClicked' class="blog__btnStyle">Buscar</button>
+      </div>
+    </div>
+    <blog-feed :filters="filters" :keySearch="search" :searchClicked="searchClicked" />
     <blog-post :post="post"/>
     <blog-footer/>
   </main>
@@ -29,8 +37,13 @@ export default {
       labels: {
         post: '',
         author: ''
-      }
+      },
+      search: '',
+      searchClicked: false,
+      resultSearch: ''
     }
+  },
+  methods: {
   },
 
   computed: {
@@ -39,7 +52,7 @@ export default {
     },
     filters() {
       let filters = {}
-      console.log('this.post: ', this.post)
+      console.log('this.post::c ', this.post)
       if (this.post) filters.post = this.post
       if (this.author) filters.author = this.author
 
@@ -54,10 +67,6 @@ export default {
   },
 
   mounted() {
-    this.$getResource('blog')
-      .then(x => {
-        // use pace hook to know when rendering is ready
-      })
   }
 }
 </script>

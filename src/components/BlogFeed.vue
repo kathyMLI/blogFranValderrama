@@ -1,31 +1,31 @@
 <template>
-  <transition-group tag="ul" :name="transition"  class="blog__feed">
-    <li v-for="post in feed" class="preview" :key="post.id">
-      <figure class="preview__figure" :class="figureClass" :style="getBgImg(post.image)">
-        <transition name="v--fade">
-          <figcaption v-if="!reading || $device.phone" class="preview__details">
-            <router-link class="preview__title"
-              :to="`/read/${post.id}`"
-              @click.native="scrollTo(0, 220, scrollDelay)">
-              {{ post.title }}
-            </router-link>
+  <div>
+    <transition-group tag="ul" :name="transition"  class="blog__feed">
+      <li v-for="(post,index) in feed" class="preview" :key="index">
+        <figure class="preview__figure" :class="figureClass" :style="getBgImg(post.image)">
+          <transition name="v--fade">
+            <figcaption v-if="!reading || $device.phone" class="preview__details">
+              <div class="preview__title"
+                >
+                {{ post.title }}
+              </div>
+              <div class="preview__meta">
+                <time class="preview__published">
+                  {{ prettyDate(post.published) }}
+                </time>
 
-            <div class="preview__meta">
-              <time class="preview__published">
-                {{ prettyDate(post.published) }}
-              </time>
-
-              <router-link class="preview__author"
-                :to="`/by/${kebabify(post.author)}`"
-                @click.native="scrollTo(0, 220, scrollDelay)">
-                {{ post.author }}
-              </router-link>
-            </div>
-          </figcaption>
-        </transition>
-      </figure>
-    </li>
-  </transition-group>
+                <router-link class="preview__author"
+                  :to="`/by/${kebabify(post.author)}`"
+                  @click.native="scrollTo(0, 220, scrollDelay)">
+                  {{ post.author }}
+                </router-link>
+              </div>
+            </figcaption>
+          </transition>
+        </figure>
+      </li>
+    </transition-group>
+  </div>  
 </template>
 
 <script>
@@ -39,6 +39,14 @@ export default {
     filters: {
       type: Object,
       default: () => {}
+    },
+    keySearch: {
+      type: String,
+      default: ''
+    },
+    searchClicked: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -48,7 +56,34 @@ export default {
       transition: 'preview-appear'
     }
   },
-
+  watch: {
+    keySearch: {
+      // the callback will be called immediately after the start of the observation
+      immediate: true,
+      handler (val, oldVal) {
+        // do your stuff
+      }
+    },
+    searchClicked: {
+      // the callback will be called immediately after the start of the observation
+      immediate: true,
+      handler (val, oldVal) {
+        // do your stuff
+        console.log('hice clcik dentro del hijo: ', this.keySearch, 'con val: ', val, 'old val: ', oldVal)
+        this.$getResource('feed', this.keySearch)
+          .then(posts => {
+            this.posts = posts
+            this.transition = 'preview'
+            /* if (!Object.keys(this.filters).length) {
+              this.stackPosts(posts)
+            } else {
+              this.posts = posts
+              this.transition = 'preview'
+            } */
+          })
+      }
+    }
+  },
   computed: {
     reading() { return this.filters.post },
     scrollDelay() { return (this.$device.phone) ? 0 : 560 },
@@ -94,15 +129,17 @@ export default {
   },
 
   mounted() {
-    this.$getResource('feed')
+    console.log('llega bien la busqueda?;', this.keySearch)
+    /* this.$getResource('feed', this.keySearch)
       .then(posts => {
+        this.posts = posts
         if (!Object.keys(this.filters).length) {
           this.stackPosts(posts)
         } else {
           this.posts = posts
           this.transition = 'preview'
         }
-      })
+      }) */
   }
 }
 </script>

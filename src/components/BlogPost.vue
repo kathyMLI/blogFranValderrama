@@ -98,7 +98,7 @@ export default {
     this.$getResource('post', this.post)
       .then(this.showComments)
       .then(() => {
-        console.log('this.post: ', this.post)
+        console.log('this.post:?? ', this.post)
         this.ready = true;
       });
   }

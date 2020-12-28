@@ -5,6 +5,53 @@
   margin: 0 auto;
   padding-top: 6.25rem;
   overflow-x: hidden;
+  @include placeholder {
+    size: 2vh;
+    color: black;
+    font-weight:100;
+}
+
+  &__searchStyle{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  &__styleSearcher{
+    flex: 1;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    align-self: flex-end;
+    margin-right: 4%;
+    margin-left: 4%;
+    height: 100%;
+    width: 100%;
+  }
+  &__searchInput{
+    margin-right: 2%;
+    margin-left: 14%;
+    flex:1;
+
+  }
+  &__btnStyle{
+    min-width: 210px;
+    color: #fff;
+    background-color: #FF5F5F !important;
+    height: 60px;
+    border-radius: 12px;
+    font-size: 28px;
+    font-weight: 200;
+    border: none;
+    padding: 0px 24px;
+    line-height: 27px;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center;
+    -webkit-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+  }
+
 
   @media (--tablet) {
     padding: 7.5rem 0;

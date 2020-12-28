@@ -3,19 +3,19 @@ export default {
     return {
       path: '/feed.json',
       resolve: (response, mappers) => {
-        console.log('qe llega bb: ', response.toPlainObject())
-        let { items } = response.toPlainObject()
+        console.log('qe llega bb: ', response)
+        let { data } = response;
         // const myArray = [{x:100}, {x:200}, {x:300}];
-
-        let id = items.map(element => element.sys.id);
+        console.log('que es data?:  ', data)
+        let id = data.map(element => element.id);
         console.log('id: ', id);
-        let createdAt = items.map(element => element.sys.createdAt);
+        let createdAt = new Date();
         console.log('createdAt: ', createdAt);
-        let title = items.map(element => element.fields.title);
+        let title = data.map(element => element.title);
         console.log('title: ', title);
-        let author = items.map(element => element.fields.fotografa);
+        let author = 'autor'
         console.log('author: ', author);
-        let imageTop = items.map(element => element.fields.imageTop.fields.file.url);
+        let imageTop = data.map(element => element.url_book_cover);
         console.log('fotoTop: ', imageTop);
         // `/post/${id}.json`,
 
@@ -29,14 +29,15 @@ export default {
         for (let index = 0; index < id.length; index++) {
           var person = {};
           console.log('index: ', index)
-          person.author = author[index]
-          person.image = `https:${imageTop[index]}`
-          person.published = createdAt[index]
+          person.author = author
+          person.image = imageTop[index]
+          person.published = new Date()
           person.title = title[index]
           person.id = id[index]
           fruits2.push(person)
         }
         console.log('fruits2: ', fruits2)
+        console.log('mappers: ', mappers.pipe(fruits2))
         return mappers.pipe(fruits2)
       }
     }

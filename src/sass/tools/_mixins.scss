@@ -13,3 +13,9 @@
 	background-repeat: no-repeat;
 	background-position: $_pos;
 }
+@mixin placeholder {
+	::-webkit-input-placeholder {@content}
+	:-moz-placeholder           {@content}
+	::-moz-placeholder          {@content}
+	:-ms-input-placeholder      {@content}  
+  }
