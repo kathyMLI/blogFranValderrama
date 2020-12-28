@@ -13,8 +13,23 @@
 
   &__searchStyle{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
+    @media (--tablet) {
+      flex-direction: row;
+    }
+
+    @media (--laptop) {
+      flex-direction: row;
+    }
+
+    @media (--desktop) {
+      flex-direction: row;
+    }
+
+    @media (--monitor) {
+      flex-direction: row;
+    }
   }
   &__styleSearcher{
     flex: 1;

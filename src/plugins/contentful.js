@@ -4,8 +4,6 @@ const contentful = require('contentful');
 // these will be set via `env` property in nuxt.config.js
 
 const config = {
-  space: 'yyi178t44r0b',
-  accessToken: 'a_OGKxVZ7VGhj9BuJmJRoPPfJ7XTcIWyQdxocoIWVjo'
 };
 
 
