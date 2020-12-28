@@ -34,7 +34,27 @@
     opacity: 0;
     transform: translate3d(0, -2.5rem, 0);
   }
-
+  &__flex-container {
+    height: 100%;
+    margin-top: 10%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &__row {
+    width: auto;
+  }
+  &__flex-item {
+    line-height: 20px;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+  }
   &__figure {
     position: relative;
     padding-top: 140%;

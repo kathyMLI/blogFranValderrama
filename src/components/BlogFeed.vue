@@ -1,6 +1,6 @@
 <template>
   <div>
-    <transition-group tag="ul" :name="transition"  class="blog__feed">
+    <transition-group v-if="resultRecived" tag="ul" :name="transition"  class="blog__feed">
       <li v-for="(post,index) in feed" class="preview" :key="index">
         <figure class="preview__figure" :class="figureClass" :style="getBgImg(post.image)">
           <transition name="v--fade">
@@ -25,6 +25,11 @@
         </figure>
       </li>
     </transition-group>
+    <div class="preview__flex-container">
+        <div class="preview__row"> 
+            <div class="preview__flex-item">No se encontraron resultados 😥</div>
+        </div>
+    </div>
   </div>  
 </template>
 
@@ -53,7 +58,8 @@ export default {
   data() {
     return {
       posts: [],
-      transition: 'preview-appear'
+      transition: 'preview-appear',
+      resultRecived: false
     }
   },
   watch: {
@@ -74,6 +80,12 @@ export default {
           .then(posts => {
             this.posts = posts
             this.transition = 'preview'
+            if (this.posts.length === 0) {
+              console.log('no tengo resultados')
+              this.resultRecived = false
+            } else {
+              this.resultRecived = true
+            }
             /* if (!Object.keys(this.filters).length) {
               this.stackPosts(posts)
             } else {
