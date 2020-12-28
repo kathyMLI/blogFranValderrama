@@ -3,9 +3,9 @@
     <blog-nav :content="content" :filters="filters" :navs="navs"/>
     <div class="blog__searchStyle">
       <div class="blog__styleSearcher">
-        <input class="blog__searchInput" v-model="search" placeholder="titulo, autor o ISBN">
+        <input v-on:keyup="validateEmailAddress" class="blog__searchInput" v-model="search" placeholder="titulo, autor o ISBN">
       </div>
-      <div>
+      <div class="blog__buttonContainerStyle">
         <button v-on:click='searchClicked = !searchClicked' class="blog__btnStyle">Buscar</button>
       </div>
     </div>
@@ -44,6 +44,11 @@ export default {
     }
   },
   methods: {
+    validateEmailAddress: function(e) {
+      if (e.keyCode === 13) {
+        this.searchClicked = !this.searchClicked;
+      }
+    }
   },
 
   computed: {

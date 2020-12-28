@@ -11,7 +11,7 @@
     font-weight:100;
 }
 
-  &__searchStyle{
+  &__searchStyle {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -31,7 +31,7 @@
       flex-direction: row;
     }
   }
-  &__styleSearcher{
+  &__styleSearcher {
     flex: 1;
     border-top-style: hidden;
     border-right-style: hidden;
@@ -42,14 +42,20 @@
     margin-left: 4%;
     height: 100%;
     width: 100%;
+    @media (--phone) {
+      margin:0;
+    }
   }
-  &__searchInput{
+  &__searchInput {
     margin-right: 2%;
     margin-left: 14%;
     flex:1;
-
+    @media (--phone) {
+      margin:0;
+      padding: 2%;
+    }
   }
-  &__btnStyle{
+  &__btnStyle {
     min-width: 210px;
     color: #fff;
     background-color: #FF5F5F !important;
@@ -65,6 +71,16 @@
     align-items: center;
     -webkit-box-sizing: border-box !important;
     box-sizing: border-box !important;
+    @media (--phone) {
+      margin-top: 3%;
+    }
+  }
+  &__buttonContainerStyle {
+    @media (--phone) {
+    display: flex;
+    justify-content: center;
+    }
+
   }
 
 
