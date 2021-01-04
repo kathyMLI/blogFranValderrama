@@ -7,34 +7,57 @@
             <figcaption v-if="!reading || $device.phone" class="preview__details">
               <div class="preview__title"
                 >
-                {{ post.title }}
+                <div>{{ post.title }}</div>
+                <div>
+                  <div class="preview__dataBook">{{ prettyName(post.author)[1] }} {{ prettyName(post.author)[0] }}</div>
+                  <div>editorial: {{ post.editorial }}</div>
+                  <div>ISBN: {{post.isbn}}</div>
+                </div>
+                <div class="preview__priceBook">
+                  <div>10.000</div>
+                  <div>
+                    <font-awesome-icon icon="shopping-cart" />
+                  </div> 
+                </div>  
               </div>
               <div class="preview__meta">
                 <time class="preview__published">
-                  {{ prettyDate(post.published) }}
+                  {{ prettyDate(post.dateFinish) }}
                 </time>
 
-                <router-link class="preview__author"
+                <!-- <router-link class="preview__author"
                   :to="`/by/${kebabify(post.author)}`"
                   @click.native="scrollTo(0, 220, scrollDelay)">
                   {{ post.author }}
-                </router-link>
+                </router-link> -->
               </div>
             </figcaption>
           </transition>
         </figure>
       </li>
     </transition-group>
-    <div class="preview__flex-container">
-        <div class="preview__row"> 
-            <div class="preview__flex-item">No se encontraron resultados 😥</div>
-        </div>
+    <div v-if="!resultRecived" class="preview__flex-container">
+    <div class="layout">
+      <!-- ommited -->
+      <SocialChat
+        icon
+        class="preview__whatsapp-chat"
+        :attendants="attendants"
+      >
+        <p slot="header">Click one of our representatives below to chat on WhatsApp.</p>
+        <MyWhatsAppIcon slot="button" />
+        <small slot="footer">Opening hours: 8am to 6pm</small>
+      </SocialChat>
     </div>
-  </div>  
+          <div class="preview__row"> 
+              <div class="preview__flex-item">No se encontraron resultados 😥</div>
+          </div>
+      </div>
+    </div>  
 </template>
 
 <script>
-import { scrollTo, kebabify, prettyDate } from '../helpers'
+import { scrollTo, kebabify, prettyDate, prettyName } from '../helpers'
 
 export default {
   name: 'blog-feed',
@@ -59,7 +82,19 @@ export default {
     return {
       posts: [],
       transition: 'preview-appear',
-      resultRecived: false
+      resultRecived: false,
+      attendants: [
+        {
+          app: 'whatsapp',
+          label: 'Dueña',
+          name: 'Pamela',
+          number: '88888888',
+          avatar: {
+            src: 'https://avatars0.githubusercontent.com/u/8084606?s=460&u=20b6499a416cf7129a18e5c168cf387e159edb1a&v=4',
+            alt: 'La cara de la Pame'
+          }
+        }
+      ]
     }
   },
   watch: {
@@ -122,6 +157,7 @@ export default {
     scrollTo,
     kebabify,
     prettyDate,
+    prettyName,
     getBgImg(src) {
       return { backgroundImage: `url(${src})` }
     },

@@ -8,15 +8,14 @@ export default {
         // const myArray = [{x:100}, {x:200}, {x:300}];
         console.log('que es data?:  ', data)
         let id = data.map(element => element.id);
-        console.log('id: ', id);
-        let createdAt = new Date();
-        console.log('createdAt: ', createdAt);
+        let dateFinish = data.map(element => element.date_finish);
         let title = data.map(element => element.title);
-        console.log('title: ', title);
-        let author = 'autor'
-        console.log('author: ', author);
+        let author = data.map(element => element.author);
         let imageTop = data.map(element => element.url_book_cover);
-        console.log('fotoTop: ', imageTop);
+        let editorial = data.map(element => element.editorial)
+        let isbn = data.map(element => element.isbn)
+        console.log('que es isbn?:  ', isbn)
+
         // `/post/${id}.json`,
 
         /* {
@@ -29,11 +28,13 @@ export default {
         for (let index = 0; index < id.length; index++) {
           var person = {};
           console.log('index: ', index)
-          person.author = author
+          person.author = author[index]
           person.image = imageTop[index]
-          person.published = new Date()
+          person.dateFinish = dateFinish[index]
           person.title = title[index]
           person.id = id[index]
+          person.editorial = editorial[index]
+          person.isbn = isbn[index]
           fruits2.push(person)
         }
         console.log('fruits2: ', fruits2)

@@ -49,6 +49,14 @@
   &__row {
     width: auto;
   }
+
+  &__whatsapp-chat {
+    --whatsapp: #46c056;
+    --vsc-bg-header: var(--whatsapp);
+    --vsc-bg-button: var(--whatsapp);
+    --vsc-outline-color: var(--whatsapp);
+  }
+
   &__flex-item {
     line-height: 20px;
     font-weight: bold;
@@ -83,10 +91,23 @@
     width: 100%;
     height: 100%;
   }
-
+  &__dataBook {
+    margin-top: 4%;
+  }
+  &__editorialBook {
+    margin-top: 4%;
+  }
+  &__priceBook {
+    margin-top: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
   &__title {
     @extend %txt--preview;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     height: 100%;
     padding: .75rem;
     color: cc(txt, inv);

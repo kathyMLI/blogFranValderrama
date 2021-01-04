@@ -18,3 +18,8 @@ export const prettyDate = (date) =>
     .slice(0, 4)
     .join(' ')
     .replace(/( \d+)$/, ',$1')
+
+export const prettyName = (words) =>
+  words
+    .toLowerCase()
+    .split(',')

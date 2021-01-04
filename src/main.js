@@ -5,14 +5,15 @@ import * as resources from './resources'
 import resource from './plugins/resource'
 import deviceQueries from './plugins/device-queries'
 import Pace from 'pace-progress'
+import VueSocialChat from 'vue-social-chat'
 
 Vue.config.productionTip = false
-
 Vue.use(resource, {
   resources,
   endpoint: '/static/api'
 })
 
+Vue.use(VueSocialChat)
 Vue.use(deviceQueries, {
   phone: 'max-width: 567px',
   tablet: 'min-width: 568px',
@@ -21,6 +22,7 @@ Vue.use(deviceQueries, {
   desktop: 'min-width: 1280px',
   monitor: 'min-width: 1448px'
 })
+require('./plugins/fontawesome');
 
 new Vue({
   router,
