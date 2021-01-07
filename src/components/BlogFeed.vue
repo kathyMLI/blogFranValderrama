@@ -1,19 +1,20 @@
 <template>
   <div>
     <transition-group v-if="resultRecived" tag="ul" :name="transition"  class="blog__feed">
-      <li v-for="(post,index) in feed" class="preview" :key="index">
-        <figure class="preview__figure" :class="figureClass" :style="getBgImg(post.image)">
+      <li v-for="(post,index) in feed" class="preview" :key="'component'+index" @mouseover="hoverEffect('component'+index)" @mouseleave="noHoverEffect" :style= "[hoverEffectActive=='component'+index ?   getBgImg(post.image) : { backgroundColor: 'white' }]">
+        <figure class="preview__figure">
           <transition name="v--fade">
             <figcaption v-if="!reading || $device.phone" class="preview__details">
               <div class="preview__title"
+               :style= "[hoverEffectActive=='component'+index ? { color: 'white' } : { color: 'black' }]"
                 >
                 <div>{{ post.title }}</div>
                 <div>
-                  <div class="preview__dataBook">{{ prettyName(post.author)[1] }} {{ prettyName(post.author)[0] }}</div>
-                  <div>editorial: {{ post.editorial }}</div>
-                  <div>ISBN: {{post.isbn}}</div>
+                  <div class="preview__dataBook" style="font-size: 1.9rem;font-weight: 300;">{{ prettyName(post.author)[1] }} {{ prettyName(post.author)[0] }}</div>
+                  <div style="font-size: 1.0rem;font-weight: 200;">editorial: {{ post.editorial }}</div>
+                  <div style="font-size: 0.5rem;font-weight: 200;">ISBN: {{post.isbn}}</div>
                 </div>
-                <div class="preview__priceBook">
+                <div class="preview__priceBook" style="position: absolute; bottom: 0;">
                   <div>10.000</div>
                   <div>
                     <font-awesome-icon icon="shopping-cart" />
@@ -83,6 +84,7 @@ export default {
       posts: [],
       transition: 'preview-appear',
       resultRecived: false,
+      hoverEffectActive: -1,
       attendants: [
         {
           app: 'whatsapp',
@@ -159,7 +161,19 @@ export default {
     prettyDate,
     prettyName,
     getBgImg(src) {
-      return { backgroundImage: `url(${src})` }
+      console.log('src: ', src)
+      if (src !== '') {
+        return { backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${src}')` }
+      }
+      return { backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${src}')` }
+    },
+    hoverEffect(index) {
+      this.hoverEffectActive = index;
+      console.log('hover: ', index)
+    },
+    noHoverEffect() {
+      this.hoverEffectActive = -1;
+      console.log('no hover')
     },
     stackPosts(posts) {
       let interval
