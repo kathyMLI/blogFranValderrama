@@ -143,7 +143,7 @@ export default {
       if (src !== '') {
         return { backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${src}')` }
       }
-      return { backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${src}')` }
+      return { backgroundColor: '#FF5F5F', borderStyle: 'none' }
     },
     hoverEffect(index) {
       this.hoverEffectActive = index;
