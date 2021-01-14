@@ -8,7 +8,8 @@
               <div class="preview__title"
                :style= "[hoverEffectActive=='component'+index ? { color: 'white' } : { color: 'black' }]"
                 >
-                <div>{{ post.title }}</div>
+                <div v-if="isMobile()">{{ prettyTitle(post.title) }}</div>
+                <div v-if="!isMobile()">{{ post.title }}</div>
                 <div>
                   <div class="preview__dataBook" style="font-size: 1.9rem;font-weight: 300;">{{ prettyName(post.author)[1] }} {{ prettyName(post.author)[0] }}</div>
                   <div style="font-size: 1.0rem;font-weight: 200;">editorial: {{ post.editorial }}</div>
@@ -45,7 +46,7 @@
 </template>
 
 <script>
-import { scrollTo, kebabify, prettyDate, prettyName } from '../helpers'
+import { scrollTo, kebabify, prettyDate, prettyName, prettyTitle, isMobile } from '../helpers'
 
 export default {
   name: 'blog-feed',
@@ -136,6 +137,8 @@ export default {
     kebabify,
     prettyDate,
     prettyName,
+    prettyTitle,
+    isMobile,
     getBgImg(src) {
       if (src !== '') {
         return { backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${src}')` }
