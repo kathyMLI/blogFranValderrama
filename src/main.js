@@ -5,7 +5,6 @@ import * as resources from './resources'
 import resource from './plugins/resource'
 import deviceQueries from './plugins/device-queries'
 import Pace from 'pace-progress'
-import VueSocialChat from 'vue-social-chat'
 
 Vue.config.productionTip = false
 Vue.use(resource, {
@@ -13,7 +12,6 @@ Vue.use(resource, {
   endpoint: '/static/api'
 })
 
-Vue.use(VueSocialChat)
 Vue.use(deviceQueries, {
   phone: 'max-width: 567px',
   tablet: 'min-width: 568px',

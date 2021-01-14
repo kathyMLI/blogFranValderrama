@@ -24,7 +24,10 @@
                       </time>
                     </div>
                     <div style="text-decoration:line-through;font-size:1.5rem;">${{post.price}}</div>
-                    <div style="padding-bottom: 20%">${{post.promo}} <font-awesome-icon icon="shopping-cart" /></div>
+                    <div style="padding-bottom: 20%">
+                      ${{post.promo}}
+                      <a href="" v-on:click.stop.prevent="openWindow(srcWs+post.isbn)"><font-awesome-icon icon="shopping-cart" /></a>
+                      </div>
                   </div>
                 </div>  
               </div>
@@ -34,21 +37,9 @@
       </li>
     </transition-group>
     <div v-if="!resultRecived" class="preview__flex-container">
-    <div class="layout">
-      <!-- ommited -->
-      <SocialChat
-        icon
-        class="preview__whatsapp-chat"
-        :attendants="attendants"
-      >
-        <p slot="header">Click one of our representatives below to chat on WhatsApp.</p>
-        <MyWhatsAppIcon slot="button" />
-        <small slot="footer">Opening hours: 8am to 6pm</small>
-      </SocialChat>
-    </div>
-          <div class="preview__row"> 
-              <div class="preview__flex-item">No se encontraron resultados 😥</div>
-          </div>
+        <div class="preview__row"> 
+            <div class="preview__flex-item">No se encontraron resultados 😥</div>
+        </div>
       </div>
     </div>  
 </template>
@@ -81,18 +72,7 @@ export default {
       transition: 'preview-appear',
       resultRecived: false,
       hoverEffectActive: -1,
-      attendants: [
-        {
-          app: 'whatsapp',
-          label: 'Dueña',
-          name: 'Pamela',
-          number: '88888888',
-          avatar: {
-            src: 'https://avatars0.githubusercontent.com/u/8084606?s=460&u=20b6499a416cf7129a18e5c168cf387e159edb1a&v=4',
-            alt: 'La cara de la Pame'
-          }
-        }
-      ]
+      srcWs: 'https://wa.me/56975836768?text=Hola%20Pamela%20quiero%20comprar%20un%20libro%20con%20el%20ISBN%20:%20'
     }
   },
   watch: {
@@ -171,6 +151,9 @@ export default {
       this.hoverEffectActive = -1;
       console.log('no hover')
     },
+    openWindow: function (link) {
+      window.open(link);
+    },
     stackPosts(posts) {
       let interval
       const stack = () => {
@@ -187,17 +170,7 @@ export default {
   },
 
   mounted() {
-    console.log('llega bien la busqueda?;', this.keySearch)
-    /* this.$getResource('feed', this.keySearch)
-      .then(posts => {
-        this.posts = posts
-        if (!Object.keys(this.filters).length) {
-          this.stackPosts(posts)
-        } else {
-          this.posts = posts
-          this.transition = 'preview'
-        }
-      }) */
+
   }
 }
 </script>
