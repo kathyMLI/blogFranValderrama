@@ -73,7 +73,7 @@ export default {
       transition: 'preview-appear',
       resultRecived: false,
       hoverEffectActive: -1,
-      srcWs: 'https://wa.me/56975836768?text=Hola%20Pamela%20quiero%20comprar%20un%20libro%20con%20el%20ISBN%20:%20'
+      srcWs: 'https://wa.me/56956739375?text=Hola%20Pamela%20quiero%20comprar%20un%20libro%20con%20el%20ISBN%20:%20'
     }
   },
   watch: {
