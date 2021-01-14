@@ -12,8 +12,10 @@ export default {
         let title = data.map(element => element.title);
         let author = data.map(element => element.author);
         let imageTop = data.map(element => element.url_book_cover);
-        let editorial = data.map(element => element.editorial)
-        let isbn = data.map(element => element.isbn)
+        let editorial = data.map(element => element.editorial);
+        let isbn = data.map(element => element.isbn);
+        let price = data.map(element => element.price);
+        let promo = data.map(element => element.promo);
         console.log('que es isbn?:  ', isbn)
 
         // `/post/${id}.json`,
@@ -35,6 +37,8 @@ export default {
           person.id = id[index]
           person.editorial = editorial[index]
           person.isbn = isbn[index]
+          person.price = price[index];
+          person.promo = promo[index];
           fruits2.push(person)
         }
         console.log('fruits2: ', fruits2)

@@ -10,15 +10,17 @@ export const kebabify = (words) =>
   words
     .toLowerCase()
     .replace(' ', '-')
-
-export const prettyDate = (date) =>
-  new Date(date)
-    .toString()
-    .split(' ')
-    .slice(0, 4)
-    .join(' ')
-    .replace(/( \d+)$/, ',$1')
-
+export const prettyDate = (dateInput) => {
+  let date = new Date(dateInput)
+  let day = date.getDate()
+  let month = date.getMonth() + 1
+  let year = date.getFullYear()
+  if (month < 10) {
+    return `${day}-0${month}-${year}`
+  } else {
+    return `${day}-${month}-${year}`
+  }
+}
 export const prettyName = (words) =>
   words
     .toLowerCase()

@@ -4,7 +4,7 @@
   z-index: 0;
   background-repeat: round;
   background-size: cover;
-
+  border-style: solid;
   @media (--tablet) {
     width: calc(50% - 2.5rem);
     margin: 1.25rem 1.25rem 2.5rem;
@@ -126,9 +126,10 @@
     }
   }
 
-  &__published::after {
-    content: 'by';
+  &__published {
     padding: 0 .25rem;
+    font-size: 0.5rem;
+    font-weight: 200;
   }
 
   &__author {

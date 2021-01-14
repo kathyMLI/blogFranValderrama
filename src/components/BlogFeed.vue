@@ -13,24 +13,20 @@
                   <div class="preview__dataBook" style="font-size: 1.9rem;font-weight: 300;">{{ prettyName(post.author)[1] }} {{ prettyName(post.author)[0] }}</div>
                   <div style="font-size: 1.0rem;font-weight: 200;">editorial: {{ post.editorial }}</div>
                   <div style="font-size: 0.5rem;font-weight: 200;">ISBN: {{post.isbn}}</div>
+
                 </div>
                 <div class="preview__priceBook" style="position: absolute; bottom: 0;">
-                  <div>10.000</div>
-                  <div>
-                    <font-awesome-icon icon="shopping-cart" />
-                  </div> 
-                </div>  
-              </div>
-              <div class="preview__meta">
-                <time class="preview__published">
-                  {{ prettyDate(post.dateFinish) }}
-                </time>
 
-                <!-- <router-link class="preview__author"
-                  :to="`/by/${kebabify(post.author)}`"
-                  @click.native="scrollTo(0, 220, scrollDelay)">
-                  {{ post.author }}
-                </router-link> -->
+                  <div>
+                    <div>
+                      <time class="preview__published">
+                        oferta disponible hasta {{ prettyDate(post.dateFinish) }}
+                      </time>
+                    </div>
+                    <div style="text-decoration:line-through;font-size:1.5rem;">${{post.price}}</div>
+                    <div style="padding-bottom: 20%">${{post.promo}} <font-awesome-icon icon="shopping-cart" /></div>
+                  </div>
+                </div>  
               </div>
             </figcaption>
           </transition>

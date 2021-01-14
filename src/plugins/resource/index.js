@@ -11,8 +11,6 @@ export default {
       // method =
       // this "this" references "this" in this component, ok?
       if (method === 'feed') {
-        console.log('busqueda: ', options)
-        console.log('this.$options.resource: ', this.$options.resource)
         let name = this.$options.resource
         if (!name || !resources[name] || !resources[name][method]) return;
         // get fetch path and response resolver/mapper
@@ -25,7 +23,6 @@ export default {
         let { resolve } = resources[name][method](options)
         let optionsClean = options.replace(/\s/g, '')
         let uri = ''
-        console.log('pero q onda?:', options)
         if (optionsClean !== '') {
           uri = 'https://viaje-lector.herokuapp.com/v1/search?book=' + optionsClean
         } else {
