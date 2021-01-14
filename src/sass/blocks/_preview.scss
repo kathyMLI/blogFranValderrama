@@ -45,24 +45,27 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    @media (--phone) {
+      line-height: 50px;
+      font-size: 10vw;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
   }
-  
   &__row {
     width: auto;
   }
-
-  &__whatsapp-chat {
-    --whatsapp: #46c056;
-    --vsc-bg-header: var(--whatsapp);
-    --vsc-bg-button: var(--whatsapp);
-    --vsc-outline-color: var(--whatsapp);
-  }
-
   &__flex-item {
     line-height: 20px;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 3vw;
     text-align: center;
+    @media (--phone) {
+      line-height: 50px;
+      font-size: 10vw;
+    }
   }
   &__figure {
     opacity: 1;
@@ -104,14 +107,12 @@
     padding: .75rem;
     color: cc(txt);
     transition: background-color 225ms cb();
+    font-size: 2.5vw;
 
-    .preview__figure--mobile &,
-    &:hover {
+    @media (--phone) {
+      font-size: 11vw;
     }
 
-    @media (--monitor) {
-      padding-right: 1.5rem;
-    }
   }
 
   &__meta {

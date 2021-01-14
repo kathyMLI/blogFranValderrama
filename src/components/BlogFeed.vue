@@ -137,7 +137,6 @@ export default {
     prettyDate,
     prettyName,
     getBgImg(src) {
-      console.log('src: ', src)
       if (src !== '') {
         return { backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${src}')` }
       }
@@ -145,11 +144,9 @@ export default {
     },
     hoverEffect(index) {
       this.hoverEffectActive = index;
-      console.log('hover: ', index)
     },
     noHoverEffect() {
       this.hoverEffectActive = -1;
-      console.log('no hover')
     },
     openWindow: function (link) {
       window.open(link);

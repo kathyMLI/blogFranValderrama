@@ -89,10 +89,12 @@
     background-color: #FF5F5F !important;
     height: 60px;
     border-radius: 12px;
-    font-size: 28px;
+    font-size: 2vw;
     font-weight: 200;
+    margin-left: auto;
+    margin-right: auto;
     border: none;
-    padding: 0px 24px;
+    padding-left: 20%;
     line-height: 27px;
     text-decoration: none !important;
     display: inline-flex !important;
@@ -101,6 +103,9 @@
     box-sizing: border-box !important;
     @media (--phone) {
       margin-top: 3%;
+      font-size: 10vw;
+      padding-left: 14%;
+
     }
   }
   &__buttonContainerStyle {
