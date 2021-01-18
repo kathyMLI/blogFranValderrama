@@ -21,7 +21,8 @@ export default {
         3.method: post / options: BlogPost -> resolve: mappers.merge({ title, content, ...meta }) // path: `/post/${id}.json`
         */
         let { resolve } = resources[name][method](options)
-        let optionsClean = options.replace(/\s/g, '')
+
+        let optionsClean = options;
         let uri = ''
         if (optionsClean !== '') {
           uri = 'https://viaje-lector.herokuapp.com/v1/search?book=' + optionsClean
